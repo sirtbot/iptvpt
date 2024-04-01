@@ -1,0 +1,434 @@
+$engine: 3
+$onesync: on
+name: Rexshack RedM Build
+version: 1.0.0
+author: Rexshack Gaming
+description: Rexshack RedM Server Build
+
+tasks:
+  #  Download Base Files
+  - action: download_github
+    src: https://github.com/RP-Redm/txAdminRecipe
+    ref: main
+    dest: ./tmp/RSGCore
+
+  - action: move_path
+    src: ./tmp/RSGCore/server.cfg
+    dest: ./server.cfg
+
+  - action: move_path
+    src: ./tmp/RSGCore/myLogo.png
+    dest: ./myLogo.png
+
+  # Prepare Database
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/RSGCore/rsgcore.sql
+
+  # Downloading Standalone Resources  
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    subpath: resources
+    dest: ./resources/[cfx-default]
+
+  - action: download_file
+    path: ./tmp/files/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/download/v2.5.4/oxmysql.zip
+  - action: unzip
+    dest: ./resources/[standalone]
+    src: ./tmp/files/oxmysql.zip
+    
+  - action: download_file
+    path: ./tmp/files/ox_lib.zip
+    url: https://github.com/overextended/ox_lib/releases/latest/download/ox_lib.zip
+  - action: unzip
+    dest: ./resources/[standalone]
+    src: ./tmp/files/ox_lib.zip
+    
+  - action: download_github
+    dest: ./resources/[standalone]/connectqueue
+    ref: main
+    src: https://github.com/QRCore-RedM-Re/connectqueue
+ 
+  - action: download_github
+    dest: ./resources/[standalone]/progressbar
+    ref: main
+    src: https://github.com/QRCore-RedM-Re/progressbar
+    
+  - action: download_github
+    dest: ./resources/[standalone]/safecracker
+    ref: main
+    src: https://github.com/QRCore-RedM-Re/safecracker
+    
+  - action: download_github
+    dest: ./resources/[standalone]/PolyZone
+    ref: main
+    src: https://github.com/QRCore-RedM-Re/PolyZone
+
+  - action: download_github
+    dest: ./resources/[standalone]/pma-voice
+    ref: main
+    src: https://github.com/AvarianKnight/pma-voice
+
+  - action: download_github
+    dest: ./resources/[standalone]/menuv
+    ref: main
+    src: https://github.com/QRCore-RedM-Re/menuv
+    
+  - action: download_github
+    dest: ./resources/[standalone]/weathersync
+    ref: main
+    src: https://github.com/RexShack/weathersync
+    
+  - action: download_github
+    dest: ./resources/[standalone]/xsound
+    ref: master
+    src: https://github.com/RexShack/xsound
+    
+  - action: download_github
+    dest: ./resources/[standalone]/menu_base
+    ref: main
+    src: https://github.com/RP-Redm/menu_base
+
+  # Download RSGCore resources
+  
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-core
+    ref: main
+    dest: ./resources/[framework]/rsg-core
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-inventory
+    ref: main
+    dest: ./resources/[framework]/rsg-inventory
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-multicharacter
+    ref: main
+    dest: ./resources/[framework]/rsg-multicharacter
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-management
+    ref: main
+    dest: ./resources/[framework]/rsg-management
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-appearance
+    ref: main
+    dest: ./resources/[framework]/rsg-appearance
+  
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-pvp
+    ref: main
+    dest: ./resources/[framework]/rsg-pvp
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-clothes
+    ref: main
+    dest: ./resources/[framework]/rsg-clothes
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-medic
+    ref: main
+    dest: ./resources/[framework]/rsg-medic
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-banking
+    ref: main
+    dest: ./resources/[framework]/rsg-banking
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-input
+    ref: main
+    dest: ./resources/[framework]/rsg-input
+        
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-lockpick
+    ref: main
+    dest: ./resources/[framework]/rsg-lockpick
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-menu
+    ref: main
+    dest: ./resources/[framework]/rsg-menu
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-policejob
+    ref: main
+    dest: ./resources/[framework]/rsg-policejob
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-scoreboard
+    ref: main
+    dest: ./resources/[framework]/rsg-scoreboard
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-spawn
+    ref: main
+    dest: ./resources/[framework]/rsg-spawn
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-target
+    ref: main
+    dest: ./resources/[framework]/rsg-target
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-weapons
+    ref: main
+    dest: ./resources/[framework]/rsg-weapons
+      
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-doorlock
+    ref: main
+    dest: ./resources/[framework]/rsg-doorlock
+           
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-shops
+    ref: main
+    dest: ./resources/[framework]/rsg-shops
+                
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-radialmenu
+    ref: main
+    dest: ./resources/[framework]/rsg-radialmenu
+  
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-essentials
+    ref: main
+    dest: ./resources/[framework]/rsg-essentials
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-travel
+    ref: main
+    dest: ./resources/[framework]/rsg-travel
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-outlawpost
+    ref: main
+    dest: ./resources/[framework]/rsg-outlawpost
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-fasttravel
+    ref: main
+    dest: ./resources/[framework]/rsg-fasttravel
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-pets
+    ref: main
+    dest: ./resources/[framework]/rsg-pets
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-storage
+    ref: main
+    dest: ./resources/[framework]/rsg-storage
+      
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-indiantobacco
+    ref: main
+    dest: ./resources/[framework]/rsg-indiantobacco
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-moonshiner
+    ref: main
+    dest: ./resources/[framework]/rsg-moonshiner
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-treasure
+    ref: main
+    dest: ./resources/[framework]/rsg-treasure
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-rhodesbankheist
+    ref: main
+    dest: ./resources/[framework]/rsg-rhodesbankheist
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-valentinebankheist
+    ref: main
+    dest: ./resources/[framework]/rsg-valentinebankheist
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-crafting
+    ref: main
+    dest: ./resources/[framework]/rsg-crafting
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-gatherer
+    ref: main
+    dest: ./resources/[framework]/rsg-gatherer
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-mining
+    ref: main
+    dest: ./resources/[framework]/rsg-mining
+
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-properties
+    ref: main
+    dest: ./resources/[framework]/rsg-properties
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-telegram
+    ref: main
+    dest: ./resources/[framework]/rsg-telegram
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-butcher
+    ref: main
+    dest: ./resources/[framework]/rsg-butcher
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-trapperplus
+    ref: main
+    dest: ./resources/[framework]/rsg-trapperplus
+        
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-looting
+    ref: main
+    dest: ./resources/[framework]/rsg-looting
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-rental
+    ref: main
+    dest: ./resources/[framework]/rsg-rental
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-fishing
+    ref: main
+    dest: ./resources/[framework]/rsg-fishing
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-adminmenu
+    ref: main
+    dest: ./resources/[framework]/rsg-adminmenu
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-fishvendor
+    ref: main
+    dest: ./resources/[framework]/rsg-fishvendor
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-canoe
+    ref: main
+    dest: ./resources/[framework]/rsg-canoe
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-drinker
+    ref: main
+    dest: ./resources/[framework]/rsg-drinker
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-piano
+    ref: main
+    dest: ./resources/[framework]/rsg-piano
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-contraband
+    ref: main
+    dest: ./resources/[framework]/rsg-contraband
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-goldpanning
+    ref: main
+    dest: ./resources/[framework]/rsg-goldpanning
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-sellvendor
+    ref: main
+    dest: ./resources/[framework]/rsg-sellvendor
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-cooking
+    ref: main
+    dest: ./resources/[framework]/rsg-cooking
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-goldsmelt
+    ref: main
+    dest: ./resources/[framework]/rsg-goldsmelt
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-lawbadge
+    ref: main
+    dest: ./resources/[framework]/rsg-lawbadge
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-farmer
+    ref: main
+    dest: ./resources/[framework]/rsg-farmer
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-horses
+    ref: main
+    dest: ./resources/[framework]/rsg-horses
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-hud
+    ref: main
+    dest: ./resources/[framework]/rsg-hud
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-weaponsmith
+    ref: main
+    dest: ./resources/[framework]/rsg-weaponsmith
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/rsg-saloontender
+    ref: main
+    dest: ./resources/[framework]/rsg-saloontender
+    
+  - action: download_github
+    dest: ./resources/[framework]/rsg-menubase
+    ref: main
+    src: https://github.com/RP-Redm/rsg-menubase
+    
+  - action: download_github
+    dest: ./resources/[framework]/rsg-prison
+    ref: main
+    src: https://github.com/RP-Redm/rsg-prison
+    
+  - action: download_github
+    dest: ./resources/[framework]/rsg-wholesaletrader
+    ref: main
+    src: https://github.com/RP-Redm/rsg-wholesaletrader
+    
+  - action: download_github
+    dest: ./resources/[framework]/rsg-npcs
+    ref: main
+    src: https://github.com/RP-Redm/rsg-npcs
+    
+  - action: download_github
+    dest: ./resources/[framework]/rsg-jobwagon
+    ref: main
+    src: https://github.com/RP-Redm/rsg-jobwagon
+    
+  - action: download_github
+    dest: ./resources/[framework]/rsg-horsetrainer
+    ref: main
+    src: https://github.com/RP-Redm/rsg-horsetrainer
+    
+  # Download Rexshack MapMod resources
+  
+  - action: download_github
+    src: https://github.com/RP-Redm/map-mexico
+    ref: main
+    dest: ./resources/[mapmods]/map-mexico
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/map-moonshineshacks
+    ref: main
+    dest: ./resources/[mapmods]/map-moonshineshacks
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/redm-ipls
+    ref: main
+    dest: ./resources/[mapmods]/redm-ipls
+    
+  - action: download_github
+    src: https://github.com/RP-Redm/redm-ymaps
+    ref: main
+    dest: ./resources/[mapmods]/redm-ymaps
+        
+  # Clean up
+  - action: remove_path
+    path: ./tmp
